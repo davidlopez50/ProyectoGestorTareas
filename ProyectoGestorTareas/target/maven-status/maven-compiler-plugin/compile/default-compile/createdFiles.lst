@@ -1,0 +1,5 @@
+com\mycompany\proyectogestortareas\Categoria.class
+com\mycompany\proyectogestortareas\FechaInvalidaException.class
+com\mycompany\proyectogestortareas\PrioridadFueraDeRangoException.class
+com\mycompany\proyectogestortareas\ProyectoGestorTareas.class
+com\mycompany\proyectogestortareas\Tareas.class
