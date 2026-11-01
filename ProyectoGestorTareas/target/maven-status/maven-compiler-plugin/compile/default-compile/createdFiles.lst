@@ -1,6 +1,6 @@
 com\mycompany\proyectogestortareas\FechaInvalidaException.class
+com\mycompany\proyectogestortareas\MainGestorTareas.class
 com\mycompany\proyectogestortareas\PrioridadFueraDeRangoException.class
-com\mycompany\proyectogestortareas\ProyectoGestorTareas.class
 com\mycompany\proyectogestortareas\GestorTareas$1.class
 com\mycompany\proyectogestortareas\GestorTareas$AccionHistorial.class
 com\mycompany\proyectogestortareas\Categoria.class

@@ -12,12 +12,14 @@ public class GestorTareas {
     
   //Datos
     
+    // Atributos
     private Queue<Tareas> buzon;  //Cola para las tareas que van ingresando
     private ArrayList<Tareas> pendientes; //Lista de tareas que estan pendientes
     private ArrayList<Tareas> completadas; //Lista de tareas completadas
     private ArrayDeque<Object> historial; //Pila para el boton de deshacer
     private Categoria raiz; // Raiz apra el arbol de categorias
 
+    // Constructor que inicializa las colecciones principales y construye la estructura inicial del arbol de categorias
     public GestorTareas() {
         this.buzon = new LinkedList<>();
         this.pendientes = new ArrayList<>();
@@ -28,7 +30,7 @@ public class GestorTareas {
         inicializarArbolCategorias();
     }
     
-    //Metodo para contruir el arbol de categorias
+    // Metodo privado: Construye la taxonomia completa del arbol de categorias y subcategorias por defecto
     private void inicializarArbolCategorias() {
         this.raiz = new Categoria("Raiz (Sistema Gestor de Tareas)");
         
@@ -138,8 +140,9 @@ public class GestorTareas {
         
     }
     
-    //Clase para manejar el historial de la pila (Deshacer)
+    //Clase para manejar el historial de la pila
     
+    // Representa cada registro guardado en la pila del historial para la funcion de deshacer
     private static class AccionHistorial {
         String  tipo; // "Agregar" o "Completar"
         Tareas tarea;
@@ -150,12 +153,12 @@ public class GestorTareas {
         }
     }
         
-    //Metodo para agregar tareas entrantes a la cola
+    // Metodo para agregar tareas entrantes a la cola
     public void recibirTarea(Tareas t) {
         buzon.add(t);
     }
 
-    //Metodo para sacar la tarea de la cola y pasarla a pendientes
+    // Metodo para sacar la tarea de la cola y pasarla a pendientes
     public Tareas procesarSiguiente() {
         Tareas siguiente = buzon.poll();
         if (siguiente != null) {
@@ -165,7 +168,7 @@ public class GestorTareas {
         return siguiente;
     }
 
-    //Metodo para mover una tarea de pendientes a completadas
+    // Metodo para mover una tarea de pendientes a completadas
     public void marcarComoCompletada(Tareas t) {
         if (pendientes.remove(t)) {
             t.setCompletada(true);
@@ -174,7 +177,7 @@ public class GestorTareas {
         }
     }
 
-    //Metodo para revertir la ultima accion usando la pila
+    // Metodo para revertir la ultima accion usando la pila
     public boolean deshacerAccion() {
         if (historial.isEmpty()) {
             return false;
@@ -195,7 +198,7 @@ public class GestorTareas {
         return false;
     }
 
-    //Metodo para ordenar y buscar una tarea por su nombre
+    // Metodo para ordenar y buscar una tarea por su nombre
     public Tareas buscarTareaPorNombre(String nombre) {
         ArrayList<Tareas> copiaPendientes = new ArrayList<>(pendientes);
 
@@ -225,7 +228,7 @@ public class GestorTareas {
         return null;
     }
 
-    //Getters para las estructuras
+    // Getters para las estructuras
     public Categoria getRaiz() {
         return raiz;
     }
@@ -242,4 +245,3 @@ public class GestorTareas {
         return buzon;
     }
 }
-

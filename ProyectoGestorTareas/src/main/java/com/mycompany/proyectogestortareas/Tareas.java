@@ -18,6 +18,7 @@ public class Tareas {
     private boolean completada;
     private Categoria categoriaAsignada;
 
+    // Constructores de la clase Tareas: Permiten instanciar una tarea con descripcion inicial
     public Tareas(String nombre, String descripcion, LocalDate fechaLimite, int prioridad)
             throws FechaInvalidaException, PrioridadFueraDeRangoException {
         this.nombre = nombre;
@@ -27,12 +28,13 @@ public class Tareas {
         this.completada = false;
     }
 
-    // Constructor sin descripción
+    // Constructor secundario: Permite instanciar una tarea sin descripcion o mas bien vacia
     public Tareas(String nombre, LocalDate fechaLimite, int prioridad)
             throws FechaInvalidaException, PrioridadFueraDeRangoException {
         this(nombre, "", fechaLimite, prioridad);
     }
 
+    // Getters y Setters: Metodos de acceso y modificacion de atributos basicos
     public String getNombre() {
         return nombre;
     }
@@ -53,7 +55,7 @@ public class Tareas {
         return fechaLimite;
     }
 
-    // La fecha no puede ser nula ni anterior a hoy
+    // Setter con validacion: La fecha no puede ser nula ni anterior a hoy
     public void setFechaLimite(LocalDate fechaLimite) throws FechaInvalidaException {
         if (fechaLimite == null || fechaLimite.isBefore(LocalDate.now())) {
             throw new FechaInvalidaException("La fecha límite no es válida");
@@ -65,7 +67,7 @@ public class Tareas {
         return prioridad;
     }
 
-    // Solo se permite 1, 2 o 3
+    // Setter con validacion: Solo se permite 1, 2 o 3 como valor de prioridad
     public void setPrioridad(int p) throws PrioridadFueraDeRangoException {
         if (p != 1 && p != 2 && p != 3) {
             throw new PrioridadFueraDeRangoException("La prioridad debe ser 1, 2 o 3");
@@ -89,13 +91,14 @@ public class Tareas {
         this.categoriaAsignada = categoriaAsignada;
     }
 
+    // Sobrescribe el metodo toString para formatear la presentacion textual de la tarea
     @Override
     public String toString() {
         return nombre + " (Prioridad: " + prioridad + ", Fecha: " + fechaLimite + ")";
     }
 }
 
-// Excepciones propias
+// Excepciones propias para el manejo de errores personalizados en prioridad y fecha
 class PrioridadFueraDeRangoException extends Exception {
 
     public PrioridadFueraDeRangoException(String mensaje) {

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class MainGestorTareas {
 
+    // Punto de entrada principal: Controla el flujo del menu interactivo y la interaccion con el usuario a traves de consola
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         GestorTareas gestor = new GestorTareas();
@@ -39,6 +40,7 @@ public class MainGestorTareas {
             }
 
             switch (opcion) {
+                // Opcion 1: Lectura de datos, instanciacion de la tarea y envio al buzon
                 case 1: {
                     System.out.print("Nombre de la tarea: ");
                     String nombre = entrada.nextLine();
@@ -67,6 +69,7 @@ public class MainGestorTareas {
                     break;
                 }
 
+                // Opcion 2: Procesamiento de la tarea encolada y asignacion a una categoria del arbol
                 case 2: {
                     // Saca la primera tarea de la cola y la pasa a pendientes
                     Tareas t = gestor.procesarSiguiente();
@@ -97,6 +100,7 @@ public class MainGestorTareas {
                     break;
                 }
 
+                // Opcion 3: Recorrido y despliegue en pantalla de la lista de tareas pendientes
                 case 3: {
                     System.out.println("Tareas pendientes:");
                     if (gestor.getPendientes().isEmpty()) {
@@ -108,6 +112,7 @@ public class MainGestorTareas {
                     break;
                 }
 
+                // Opcion 4: Recorrido y desplieggue en pantalla de la lista de tareas completadas
                 case 4: {
                     System.out.println("Tareas completadas:");
                     if (gestor.getCompletadas().isEmpty()) {
@@ -119,6 +124,7 @@ public class MainGestorTareas {
                     break;
                 }
 
+                // Opcion 5: Marcar una tarea pendiente como completada
                 case 5: {
                     if (gestor.getPendientes().isEmpty()) {
                         System.out.println("No hay tareas pendientes.");
@@ -143,6 +149,7 @@ public class MainGestorTareas {
                     break;
                 }
 
+                // Opcion 6: Ejecucion de la funcion deshacer (Undo) apoyada en la pila del historial
                 case 6: {
                     if (gestor.deshacerAccion()) {
                         System.out.println("Se deshizo la ultima accion.");
@@ -152,6 +159,7 @@ public class MainGestorTareas {
                     break;
                 }
 
+                // Opcion 7: Busqueda binaria de una tarea por su nombre
                 case 7: {
                     System.out.print("Nombre de la tarea a buscar: ");
                     String nombre = entrada.nextLine();
@@ -164,6 +172,7 @@ public class MainGestorTareas {
                     break;
                 }
 
+                // Opcion 8: Ordenamiento en burbuja de tareas pendientes por fecha limite o prioridad
                 case 8: {
                     System.out.println("1. Ordenar por fecha limite");
                     System.out.println("2. Ordenar por prioridad");
@@ -200,11 +209,13 @@ public class MainGestorTareas {
                     break;
                 }
 
+                // Opcion 9: Impresion recursiva de la estructura completa del arbol de categorias
                 case 9: {
                     gestor.getRaiz().mostrarSubarbol();
                     break;
                 }
 
+                // Opcion 0: Salir de la aplicacion
                 case 0: {
                     System.out.println("Hasta luego.");
                     break;
